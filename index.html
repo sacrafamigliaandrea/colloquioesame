@@ -616,12 +616,42 @@ footer .footer-line{
 
   color:var(--gold-soft);
   font-size:24px;
-  margin-bottom:18px;
+  margin-bottom:30px;
   font-weight:500;
   line-height:1.4;
   max-width:900px;
   margin-left:auto;
   margin-right:auto;
+}
+.footer-actions{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+.footer-btn{
+  background:transparent;
+  color:rgba(255,255,255,0.85);
+  border:1px solid rgba(229,214,176,0.4);
+  font-family:inherit;
+  font-size:18px;
+  font-weight:500;
+  padding:12px 26px;
+  border-radius:4px;
+  cursor:pointer;
+  transition:all 0.25s;
+  letter-spacing:0.3px;
+}
+.footer-btn:hover{
+  background:rgba(229,214,176,0.1);
+  border-color:var(--gold-soft);
+  color:#fff;
+}
+.footer-credits{
+  font-size:18px;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:0.5px;
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -633,6 +663,35 @@ footer .footer-line{
   .lab-stage{padding:32px 24px}
   .essay-arg{font-size:32px}
   h1.hero-title{font-size:48px}
+}
+
+/* Frase-ponte tra sezioni */
+.bridge{
+  max-width:740px;
+  margin:64px auto 0;
+  padding:32px 40px;
+  text-align:center;
+  border-top:1px solid var(--line);
+  font-size:21px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  font-style:italic;
+  position:relative;
+}
+.bridge::before{
+  content:'↓';
+  display:block;
+  font-style:normal;
+  font-size:18px;
+  color:var(--gold);
+  margin-bottom:14px;
+  letter-spacing:2px;
+  font-weight:500;
+}
+.bridge strong{
+  color:var(--blu-deep);
+  font-weight:500;
+  font-style:normal;
 }
 
 /* ==================== EFFETTI SPECIALI ==================== */
@@ -759,10 +818,12 @@ section.in-view .section-header::after{width:140px}
     <aside class="step-info" id="step-info">
       <div class="step-info-num">Step 1 di 4</div>
       <h3>L'argomento al centro</h3>
-      <p>Ogni tesina è un <strong>argomento principale</strong> che si apre verso cinque aree disciplinari. La commissione lo sa già — l'ha letto in mappa. Quello che <em>non</em> sa è dove deciderete di portarla per prima.</p>
+      <p>Ogni tesina è un <strong>argomento principale</strong> che si apre verso cinque aree disciplinari. La commissione lo sa già — l'ha letto in mappa. Quello che <em>non</em> sa è dove deciderai di portarla per prima.</p>
       <p>Senza un gancio, la tesina è una mappa concettuale. Con il gancio, diventa un percorso.</p>
     </aside>
   </div>
+
+  <p class="bridge">Hai capito <strong>come funziona</strong> il gancio. Adesso impariamo a <strong>consegnarlo</strong>: con la voce, lo sguardo, il corpo che hai.</p>
 </section>
 
 <!-- ==================== SECTION 2: LAB ==================== -->
@@ -788,9 +849,9 @@ section.in-view .section-header::after{width:140px}
       <p class="nv-card-rule">Cambialo ogni <strong>tre o quattro secondi</strong>, ruotandolo tra diversi professori della commissione (sono almeno una decina). Resta sull'occhio — non in mezzo agli occhi, non sulla fronte — per il tempo di una frase compiuta. Poi sposta.</p>
       <ul class="nv-card-list">
         <li>Mai lo sguardo a terra: leggono insicurezza in due secondi</li>
-        <li>Mai sopra le teste: sembra che parliate al muro</li>
+        <li>Mai sopra le teste: sembra che tu parli al muro</li>
         <li>Mai fisso su un solo professore: gli altri si sentono ignorati</li>
-        <li>Sì un mezzo sorriso quando arriva il vostro gancio</li>
+        <li>Sì un mezzo sorriso quando arriva il tuo gancio</li>
       </ul>
       <div class="nv-card-eserc">
         <strong>Esercizio in coppia · 3 minuti</strong>
@@ -808,13 +869,13 @@ section.in-view .section-header::after{width:140px}
         </svg>
       </div>
       <h3>Le mani</h3>
-      <p class="nv-card-rule">Sempre <strong>sopra la cintura</strong>, sempre <strong>visibili</strong>. Palmi aperti durante una promessa, indice o pollice a contare quando enumerate, mai pugni chiusi né dita intrecciate. Un <strong>pennarello chiuso</strong> in una mano è un alleato silenzioso: ti dà appiglio quando le mani non sanno dove stare e ti permette di <em>indicare</em> un punto del cartellone o dell'artefatto, mostrando che la presentazione la guidi tu.</p>
+      <p class="nv-card-rule">Sempre <strong>sopra la cintura</strong>, sempre <strong>visibili</strong>. Palmi aperti durante una promessa, indice o pollice a contare quando enumeri, mai pugni chiusi né dita intrecciate. Un <strong>pennarello chiuso</strong> in una mano è un alleato silenzioso: ti dà appiglio quando le mani non sanno dove stare e ti permette di <em>indicare</em> un punto del cartellone o dell'artefatto, mostrando che la presentazione la guidi tu.</p>
       <ul class="nv-card-list">
         <li>Mai in tasca, mai dietro la schiena</li>
         <li>Niente anelli, capelli, ciuffi: la commissione vede solo il tic</li>
         <li>Il pennarello si tiene <strong>chiuso</strong>, lo apri solo per indicare un dettaglio e poi torni a stringerlo: è uno strumento, non un giocattolo</li>
-        <li>Se reggete un oggetto del gancio, tenetelo a due mani come un libro raro</li>
-        <li>Quando non dovete gestualizzare, mani aperte appoggiate al banco</li>
+        <li>Se reggi un oggetto del gancio, tienilo a due mani come un libro raro</li>
+        <li>Quando non devi gestualizzare, mani aperte appoggiate al banco</li>
       </ul>
       <div class="nv-card-eserc">
         <strong>Esercizio individuale · 2 minuti</strong>
@@ -836,7 +897,7 @@ section.in-view .section-header::after{width:140px}
         </svg>
       </div>
       <h3>Lo spazio</h3>
-      <p class="nv-card-rule">Piedi <strong>paralleli, larghezza spalle</strong>, peso distribuito. Se in piedi, ancorati. Niente passi nervosi, niente dondolio. Lo spazio fisico che occupate dice quanto siete sicuri di essere lì.</p>
+      <p class="nv-card-rule">Piedi <strong>paralleli, larghezza spalle</strong>, peso distribuito. Se in piedi, ancorati. Niente passi nervosi, niente dondolio. Lo spazio fisico che occupi dice quanto sei sicuro di essere lì.</p>
       <ul class="nv-card-list">
         <li>Mai gambe accavallate da seduti — chiudono il busto</li>
         <li>Mai braccia conserte — la commissione legge difesa</li>
@@ -862,7 +923,7 @@ section.in-view .section-header::after{width:140px}
         </svg>
       </div>
       <h3>La voce</h3>
-      <p class="nv-card-rule">Rallentate del <strong>venti percento</strong> rispetto al parlato normale. Una <strong>pausa di due secondi</strong> dopo il gancio — lasciate che atterri. Volume un livello sopra la conversazione, mai sotto.</p>
+      <p class="nv-card-rule">Rallenta del <strong>venti percento</strong> rispetto al parlato normale. Una <strong>pausa di due secondi</strong> dopo il gancio — lascia che atterri. Volume un livello sopra la conversazione, mai sotto.</p>
       <ul class="nv-card-list">
         <li>Niente «ehm», «cioè», «tipo»: meglio una pausa muta</li>
         <li>Niente <em>uptalk</em> (frase affermativa con tono di domanda)</li>
@@ -875,15 +936,17 @@ section.in-view .section-header::after{width:140px}
       </div>
     </div>
   </div>
+
+  <p class="bridge">Hai gli strumenti del <strong>contenuto</strong> e quelli della <strong>presenza</strong>. È il momento di metterli alla prova su casi veri.</p>
 </section>
 
-<!-- ==================== SECTION 3: NON VERBALE ==================== -->
+<!-- ==================== SECTION 3: LAB ==================== -->
 <section id="lab">
   <div class="section-header">
     <div class="section-num">III</div>
     <h2 class="section-title">Pesca un esempio</h2>
   </div>
-  <p class="section-lead">Ventuno tesine reali, sette per sezione, nessun nome. Per ogni argomento la prima versione è quella che si sente più spesso. La seconda è quella che fa rallentare l'ascolto. Pesca un esempio, leggi le due versioni, poi guarda dentro il gancio per capire come è costruito — e adatta lo stesso meccanismo alla tua tesina.</p>
+  <p class="section-lead">Ventuno tesine reali, sette per sezione, nessun nome. Adesso la teoria diventa pratica: leggi, confronta, smonta il meccanismo — e adatta lo stesso schema alla tua tesina.</p>
 
   <div class="lab-stage">
     <!-- empty state -->
@@ -907,9 +970,9 @@ section.in-view .section-header::after{width:140px}
     <!-- esempio mostrato -->
     <div class="essay-card" id="essay-card">
       <div class="essay-meta">
-        <span id="essay-sezione">Sezione 3A</span>
+        <span id="essay-sezione"></span>
         <span class="essay-meta-divider"></span>
-        <span id="essay-tecnica" class="essay-tecnica hidden">Tecnica: Oggetto</span>
+        <span id="essay-tecnica" class="essay-tecnica hidden"></span>
       </div>
       <h3 class="essay-arg" id="essay-arg"></h3>
       <p class="essay-pdv" id="essay-pdv"></p>
@@ -974,7 +1037,11 @@ section.in-view .section-header::after{width:140px}
 <!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="footer-line">«Il contenuto da solo non arriva. Il gancio apre la porta, e poi dentro ci si entra a piedi, con il proprio passo.»</div>
-  <div>Il Lab del Gancio · Scuola Sacra Famiglia, Orzinuovi · A.S. 2025/2026</div>
+  <div class="footer-actions">
+    <button class="footer-btn" id="footer-restart">↻ Pesca un altro esempio</button>
+    <button class="footer-btn" id="footer-top">↑ Torna all'inizio</button>
+  </div>
+  <div class="footer-credits">Il Lab del Gancio · Scuola Sacra Famiglia, Orzinuovi · A.S. 2025/2026</div>
 </footer>
 
 <!-- ==================== JAVASCRIPT ==================== -->
@@ -1308,12 +1375,12 @@ const stepData = [
   {
     titolo:'L\'argomento al centro',
     eyebrow:'Step 1 di 4',
-    html:'<p>Ogni tesina è un <strong>argomento principale</strong> che si apre verso cinque aree disciplinari. La commissione lo sa già — l\'ha letto in mappa. Quello che <em>non</em> sa è dove deciderete di portarla per prima.</p><p>Senza un gancio, la tesina è una mappa concettuale. Con il gancio, diventa un percorso.</p>'
+    html:'<p>Ogni tesina è un <strong>argomento principale</strong> che si apre verso cinque aree disciplinari. La commissione lo sa già — l\'ha letto in mappa. Quello che <em>non</em> sa è dove deciderai di portarla per prima.</p><p>Senza un gancio, la tesina è una mappa concettuale. Con il gancio, diventa un percorso.</p>'
   },
   {
     titolo:'Il gancio si accende',
     eyebrow:'Step 2 di 4',
-    html:'<p>Il gancio è un <strong>dettaglio specifico</strong> dentro l\'argomento: un oggetto, un numero, una citazione, un paradosso. Non è il riassunto della tesina. È un punto luminoso da cui partirete.</p><p>La sua funzione è dichiarare alla commissione: «da qui comincio. Seguitemi».</p>'
+    html:'<p>Il gancio è un <strong>dettaglio specifico</strong> dentro l\'argomento: un oggetto, un numero, una citazione, un paradosso. Non è il riassunto della tesina. È un punto luminoso da cui partirai.</p><p>La sua funzione è dichiarare alla commissione: «da qui comincio. Seguitemi».</p>'
   },
   {
     titolo:'La promessa apre tre direzioni',
@@ -1323,7 +1390,7 @@ const stepData = [
   {
     titolo:'Le aree non toccate accendono curiosità',
     eyebrow:'Step 4 di 4',
-    html:'<p>Le due aree non illuminate dalla promessa <strong>restano sospese</strong>. La commissione sa che ci sono — l\'ha letto nella vostra mappa — ma non sa come le collegherete.</p><p>Quel non-detto è il vostro asso. Tiene viva l\'attenzione fino alla fine, perché la commissione vuole vedere come ci arriverete.</p>'
+    html:'<p>Le due aree non illuminate dalla promessa <strong>restano sospese</strong>. La commissione sa che ci sono — l\'ha letto nella tua mappa — ma non sa come le collegherai.</p><p>Quel non-detto è il tuo asso. Tiene viva l\'attenzione fino alla fine, perché la commissione vuole vedere come ci arriverai.</p>'
   }
 ];
 
@@ -1650,6 +1717,15 @@ document.addEventListener('keydown', e=>{
     e.preventDefault();
     document.getElementById(SECTION_IDS[SECTION_IDS.length-1]).scrollIntoView({behavior:'smooth', block:'start'});
   }
+});
+
+/* ============= FOOTER ACTIONS ============= */
+document.getElementById('footer-restart').addEventListener('click', ()=>{
+  document.getElementById('lab').scrollIntoView({behavior:'smooth', block:'start'});
+  setTimeout(pesca, 700);
+});
+document.getElementById('footer-top').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
 });
 </script>
 </body>
