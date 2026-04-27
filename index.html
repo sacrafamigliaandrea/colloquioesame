@@ -665,6 +665,57 @@ footer .footer-line{
   h1.hero-title{font-size:48px}
 }
 
+/* Anteprima infografica full-width */
+.overview{
+  width:100%;
+  background:linear-gradient(180deg, #EFF4FA 0%, #F4F7FB 100%);
+  padding:48px 24px 56px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+.overview-eyebrow{
+  font-size:14px;
+  letter-spacing:3.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:10px;
+  font-weight:500;
+}
+.overview-eyebrow::before, .overview-eyebrow::after{
+  content:'·';
+  margin:0 14px;
+  color:var(--gold-soft);
+}
+.overview-title{
+  font-size:24px;
+  color:var(--blu-deep);
+  font-weight:500;
+  margin-bottom:8px;
+  letter-spacing:-0.3px;
+}
+.overview-sub{
+  font-size:18px;
+  color:var(--ink-soft);
+  max-width:700px;
+  margin:0 auto 32px;
+  font-style:italic;
+  line-height:1.55;
+}
+.overview-img{
+  display:block;
+  width:100%;
+  max-width:1600px;
+  height:auto;
+  margin:0 auto;
+  border-radius:8px;
+  box-shadow:0 4px 24px rgba(15,52,96,0.08);
+}
+@media (max-width:880px){
+  .overview{padding:32px 16px 40px}
+  .overview-title{font-size:20px}
+  .overview-sub{font-size:16px;margin-bottom:24px}
+}
+
 /* Frase-ponte tra sezioni */
 .bridge{
   max-width:740px;
@@ -742,6 +793,14 @@ section.in-view .section-header::after{width:140px}
     </div>
   </div>
 </header>
+
+<!-- ==================== OVERVIEW INFOGRAFICA ==================== -->
+<aside class="overview" aria-labelledby="overview-title">
+  <div class="overview-eyebrow">Uno sguardo d'insieme</div>
+  <h2 class="overview-title" id="overview-title">Cosa vedrai in queste pagine</h2>
+  <p class="overview-sub">Un'anteprima visiva del percorso: la strategia del gancio e il linguaggio del corpo. Scorri sotto per esplorare ogni elemento.</p>
+  <img src="gancio.jpg" alt="Infografica di sintesi: il trailer di 90 secondi, il gancio cognitivo, la lista nera delle frasi proibite, lo sguardo e la voce, le mani sopra la cintura, la postura e la presenza" class="overview-img">
+</aside>
 
 <!-- ==================== SECTION 1: DINAMICA ==================== -->
 <section id="intro">
@@ -958,7 +1017,7 @@ section.in-view .section-header::after{width:140px}
         </svg>
       </div>
       <h3>Cominciamo da un confronto</h3>
-      <p>Pesca un esempio dalla raccolta. Per ogni argomento ci sono due versioni dello stesso discorso d'apertura: identica la tesina, identici i collegamenti, diversa la voce. Le confronti tu — e tiri fuori la regola da solo.</p>
+      <p>Pesca un esempio dalla raccolta. Per ogni argomento c'è una <em>prima stesura</em> — quella che viene di getto — e una <em>stesura con gancio</em>: identica la tesina, identici i collegamenti, diversa la voce. Le confronti tu — e tiri fuori la regola da solo.</p>
       <button class="btn-primary" id="pesca-btn">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8L13 8M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -980,7 +1039,7 @@ section.in-view .section-header::after{width:140px}
       <div class="discorso discorso-banale">
         <div class="discorso-label">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#A04A2A" stroke-width="1.2"/><line x1="6" y1="3" x2="6" y2="6.5" stroke="#A04A2A" stroke-width="1.2" stroke-linecap="round"/><circle cx="6" cy="8.5" r="0.8" fill="#A04A2A"/></svg>
-          Versione banale — quella che si sente più spesso
+          Prima stesura — quella che viene di getto, senza pensarci troppo
         </div>
         <div class="discorso-text" id="banale-text"></div>
       </div>
@@ -988,14 +1047,14 @@ section.in-view .section-header::after{width:140px}
       <div class="discorso discorso-gancio" id="gancio-box">
         <div class="discorso-label">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 2 L6 6 L2 10" stroke="#0F3460" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="9" cy="6" r="2" fill="#B8924A"/></svg>
-          Versione con il gancio — quella che racconta il tuo lavoro
+          Stesura con gancio — quella che racconta il tuo lavoro per come lo hai pensato
         </div>
         <div class="discorso-text" id="gancio-text"></div>
       </div>
 
       <div class="lab-actions">
         <button class="btn-primary" id="show-gancio-btn">
-          Mostra la versione con il gancio
+          Mostra la stesura con gancio
         </button>
         <button class="btn-secondary" id="show-checklist-btn" style="display:none">
           Cosa contiene il gancio?
