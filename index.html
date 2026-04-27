@@ -564,20 +564,20 @@ section{
   gap:14px;
 }
 .nv-card-list li{
-  display:flex;
-  gap:12px;
+  position:relative;
+  padding-left:20px;
   font-size:22px;
   color:var(--ink-soft);
   line-height:1.5;
 }
 .nv-card-list li::before{
   content:'';
-  display:block;
+  position:absolute;
+  left:0;
+  top:13px;
   width:7px;height:7px;
   border-radius:50%;
   background:var(--gold);
-  flex-shrink:0;
-  margin-top:10px;
 }
 .nv-card-eserc{
   background:var(--blu-25);
