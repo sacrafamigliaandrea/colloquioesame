@@ -634,6 +634,38 @@ footer .footer-line{
   .essay-arg{font-size:32px}
   h1.hero-title{font-size:48px}
 }
+
+/* ==================== EFFETTI SPECIALI ==================== */
+/* Entrata sezioni one-shot (solo se JS attivo) */
+html.js-ready section{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1)}
+html.js-ready section.in-view{opacity:1;transform:translateY(0)}
+
+/* Section header: numero romano si "settla" + linea oro che si traccia */
+.section-header{position:relative}
+html.js-ready .section-num{transform:translateY(-12px);opacity:0;transition:transform 0.7s cubic-bezier(.2,.8,.2,1) 0.15s, opacity 0.7s ease 0.15s}
+html.js-ready section.in-view .section-num{transform:translateY(0);opacity:1}
+.section-header::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--gold);transition:width 1.1s cubic-bezier(.2,.8,.2,1) 0.4s}
+section.in-view .section-header::after{width:140px}
+
+/* Slot machine: blur leggero durante lo spinning */
+.essay-arg.spinning,.essay-pdv.spinning{filter:blur(0.3px);opacity:0.85}
+
+/* Indicatore di posizione (sticky in basso a destra) */
+.nav-indicator{position:fixed;bottom:32px;right:32px;display:flex;flex-direction:column;gap:10px;z-index:50;background:rgba(255,255,255,0.92);padding:14px 10px;border-radius:28px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,52,96,0.06)}
+.nav-indicator-item{font-family:'DM Sans',sans-serif;font-size:18px;color:var(--ink-faint);text-align:center;width:32px;cursor:pointer;transition:color 0.3s,font-weight 0.3s,transform 0.3s;font-weight:500;letter-spacing:0.5px}
+.nav-indicator-item.active{color:var(--gold);font-weight:700;transform:scale(1.15)}
+.nav-indicator-item:hover{color:var(--blu)}
+
+/* Toggle audio (in alto a destra, default OFF) */
+.sound-toggle{position:fixed;top:24px;right:24px;background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;color:var(--ink-soft);transition:color 0.3s, border-color 0.3s;padding:0}
+.sound-toggle:hover{color:var(--blu);border-color:var(--blu)}
+.sound-toggle.on{color:var(--gold);border-color:var(--gold)}
+.sound-toggle svg{width:20px;height:20px}
+
+@media (max-width:880px){
+  .nav-indicator{bottom:16px;right:16px;padding:10px 8px}
+  .sound-toggle{top:16px;right:16px;width:36px;height:36px}
+}
 </style>
 </head>
 <body>
@@ -717,6 +749,7 @@ footer .footer-line{
 
         <!-- gancio (piccolo cerchio dorato che appare allo step 2) -->
         <g id="gancio" transform="translate(400 240)" opacity="0">
+          <circle id="gancio-wave" r="24" fill="none" stroke="#B8924A" stroke-width="2" opacity="0"/>
           <circle r="24" fill="#B8924A"/>
           <text y="7" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="22" fill="#fff" font-weight="700">G</text>
         </g>
@@ -733,9 +766,121 @@ footer .footer-line{
 </section>
 
 <!-- ==================== SECTION 2: LAB ==================== -->
-<section id="lab">
+<section id="nonverbale">
   <div class="section-header">
     <div class="section-num">II</div>
+    <h2 class="section-title">Davanti alla commissione</h2>
+  </div>
+  <p class="section-lead">Lo sguardo, le mani, la postura e la voce parlano di te ancora prima della prima parola. Non è teatro: è la cura della tua presenza, la stessa che hai messo nei contenuti. Quando questi quattro elementi sono al posto giusto, il tuo gancio atterra come l'hai pensato.</p>
+
+  <div class="cards-grid">
+    <!-- SGUARDO -->
+    <div class="nv-card">
+      <span class="nv-card-num">i</span>
+      <div class="nv-card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M2 14C2 14 6 6 14 6C22 6 26 14 26 14C26 14 22 22 14 22C6 22 2 14 2 14Z" stroke="#0F3460" stroke-width="1.3"/>
+          <circle cx="14" cy="14" r="4" fill="#B8924A"/>
+          <circle cx="14" cy="14" r="1.5" fill="#FAF8F2"/>
+        </svg>
+      </div>
+      <h3>Lo sguardo</h3>
+      <p class="nv-card-rule">Cambialo ogni <strong>tre o quattro secondi</strong>, ruotandolo tra diversi professori della commissione (sono almeno una decina). Resta sull'occhio — non in mezzo agli occhi, non sulla fronte — per il tempo di una frase compiuta. Poi sposta.</p>
+      <ul class="nv-card-list">
+        <li>Mai lo sguardo a terra: leggono insicurezza in due secondi</li>
+        <li>Mai sopra le teste: sembra che parliate al muro</li>
+        <li>Mai fisso su un solo professore: gli altri si sentono ignorati</li>
+        <li>Sì un mezzo sorriso quando arriva il vostro gancio</li>
+      </ul>
+      <div class="nv-card-eserc">
+        <strong>Esercizio in coppia · 3 minuti</strong>
+        Recito i primi venti secondi della tesina al compagno. Lui mi conta quante volte ho cambiato sguardo. Sotto cinque, ricomincio.
+      </div>
+    </div>
+
+    <!-- MANI -->
+    <div class="nv-card">
+      <span class="nv-card-num">ii</span>
+      <div class="nv-card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M10 22V12C10 11 11 10 12 10C13 10 14 11 14 12V8C14 7 15 6 16 6C17 6 18 7 18 8V12C18 11 19 10 20 10C21 10 22 11 22 12V18C22 22 18 22 14 22H10Z" stroke="#0F3460" stroke-width="1.3" stroke-linejoin="round" fill="#FAF8F2"/>
+          <circle cx="20" cy="20" r="2" fill="#B8924A"/>
+        </svg>
+      </div>
+      <h3>Le mani</h3>
+      <p class="nv-card-rule">Sempre <strong>sopra la cintura</strong>, sempre <strong>visibili</strong>. Palmi aperti durante una promessa, indice o pollice a contare quando enumerate, mai pugni chiusi né dita intrecciate. Un <strong>pennarello chiuso</strong> in una mano è un alleato silenzioso: ti dà appiglio quando le mani non sanno dove stare e ti permette di <em>indicare</em> un punto del cartellone o dell'artefatto, mostrando che la presentazione la guidi tu.</p>
+      <ul class="nv-card-list">
+        <li>Mai in tasca, mai dietro la schiena</li>
+        <li>Niente anelli, capelli, ciuffi: la commissione vede solo il tic</li>
+        <li>Il pennarello si tiene <strong>chiuso</strong>, lo apri solo per indicare un dettaglio e poi torni a stringerlo: è uno strumento, non un giocattolo</li>
+        <li>Se reggete un oggetto del gancio, tenetelo a due mani come un libro raro</li>
+        <li>Quando non dovete gestualizzare, mani aperte appoggiate al banco</li>
+      </ul>
+      <div class="nv-card-eserc">
+        <strong>Esercizio individuale · 2 minuti</strong>
+        Mi registro mentre dico il gancio. Riguardo il video senza audio. Conto i tic. Ne resta uno? Bene. Ne restano tre? Cambio postura.
+      </div>
+    </div>
+
+    <!-- SPAZIO -->
+    <div class="nv-card">
+      <span class="nv-card-num">iii</span>
+      <div class="nv-card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="4" y="4" width="20" height="20" stroke="#0F3460" stroke-width="1.3" fill="none"/>
+          <circle cx="14" cy="14" r="3" fill="#B8924A"/>
+          <line x1="14" y1="4" x2="14" y2="9" stroke="#0F3460" stroke-width="1"/>
+          <line x1="14" y1="19" x2="14" y2="24" stroke="#0F3460" stroke-width="1"/>
+          <line x1="4" y1="14" x2="9" y2="14" stroke="#0F3460" stroke-width="1"/>
+          <line x1="19" y1="14" x2="24" y2="14" stroke="#0F3460" stroke-width="1"/>
+        </svg>
+      </div>
+      <h3>Lo spazio</h3>
+      <p class="nv-card-rule">Piedi <strong>paralleli, larghezza spalle</strong>, peso distribuito. Se in piedi, ancorati. Niente passi nervosi, niente dondolio. Lo spazio fisico che occupate dice quanto siete sicuri di essere lì.</p>
+      <ul class="nv-card-list">
+        <li>Mai gambe accavallate da seduti — chiudono il busto</li>
+        <li>Mai braccia conserte — la commissione legge difesa</li>
+        <li>Un passo avanti deciso quando entra l'oggetto del gancio</li>
+        <li>Se serve, appoggia entrambe le mani al banco e parla da lì</li>
+      </ul>
+      <div class="nv-card-eserc">
+        <strong>Esercizio in coppia · 4 minuti</strong>
+        Recito la tesina con un libro in equilibrio sulla testa per i primi trenta secondi. Se cade, il mio corpo si stava muovendo troppo. Riprovo.
+      </div>
+    </div>
+
+    <!-- VOCE -->
+    <div class="nv-card">
+      <span class="nv-card-num">iv</span>
+      <div class="nv-card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <line x1="14" y1="4" x2="14" y2="24" stroke="#B8924A" stroke-width="1.5"/>
+          <line x1="9" y1="9" x2="9" y2="19" stroke="#0F3460" stroke-width="1.3"/>
+          <line x1="19" y1="9" x2="19" y2="19" stroke="#0F3460" stroke-width="1.3"/>
+          <line x1="5" y1="11" x2="5" y2="17" stroke="#0F3460" stroke-width="1.3"/>
+          <line x1="23" y1="11" x2="23" y2="17" stroke="#0F3460" stroke-width="1.3"/>
+        </svg>
+      </div>
+      <h3>La voce</h3>
+      <p class="nv-card-rule">Rallentate del <strong>venti percento</strong> rispetto al parlato normale. Una <strong>pausa di due secondi</strong> dopo il gancio — lasciate che atterri. Volume un livello sopra la conversazione, mai sotto.</p>
+      <ul class="nv-card-list">
+        <li>Niente «ehm», «cioè», «tipo»: meglio una pausa muta</li>
+        <li>Niente <em>uptalk</em> (frase affermativa con tono di domanda)</li>
+        <li>Le parole-chiave del gancio si scandiscono lentamente</li>
+        <li>Respiro profondo prima di iniziare: tre secondi di silenzio sono permessi e fanno classe</li>
+      </ul>
+      <div class="nv-card-eserc">
+        <strong>Esercizio individuale · 3 minuti</strong>
+        Mi registro mentre dico il gancio a velocità normale, poi a metà velocità. Riascolto: la versione lenta fa più impressione di quanto immagini.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 3: NON VERBALE ==================== -->
+<section id="lab">
+  <div class="section-header">
+    <div class="section-num">III</div>
     <h2 class="section-title">Pesca un esempio</h2>
   </div>
   <p class="section-lead">Ventuno tesine reali, sette per sezione, nessun nome. Per ogni argomento la prima versione è quella che si sente più spesso. La seconda è quella che fa rallentare l'ascolto. Pesca un esempio, leggi le due versioni, poi guarda dentro il gancio per capire come è costruito — e adatta lo stesso meccanismo alla tua tesina.</p>
@@ -826,117 +971,6 @@ footer .footer-line{
   </div>
 </section>
 
-<!-- ==================== SECTION 3: NON VERBALE ==================== -->
-<section id="nonverbale">
-  <div class="section-header">
-    <div class="section-num">III</div>
-    <h2 class="section-title">Davanti alla commissione</h2>
-  </div>
-  <p class="section-lead">Lo sguardo, le mani, la postura e la voce parlano di te ancora prima della prima parola. Non è teatro: è la cura della tua presenza, la stessa che hai messo nei contenuti. Quando questi quattro elementi sono al posto giusto, il tuo gancio atterra come l'hai pensato.</p>
-
-  <div class="cards-grid">
-    <!-- SGUARDO -->
-    <div class="nv-card">
-      <span class="nv-card-num">i</span>
-      <div class="nv-card-icon">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M2 14C2 14 6 6 14 6C22 6 26 14 26 14C26 14 22 22 14 22C6 22 2 14 2 14Z" stroke="#0F3460" stroke-width="1.3"/>
-          <circle cx="14" cy="14" r="4" fill="#B8924A"/>
-          <circle cx="14" cy="14" r="1.5" fill="#FAF8F2"/>
-        </svg>
-      </div>
-      <h3>Lo sguardo</h3>
-      <p class="nv-card-rule">Cambialo ogni <strong>tre o quattro secondi</strong>, alternando i tre commissari. Resta sull'occhio (non in mezzo agli occhi, non sulla fronte) per il tempo di una frase compiuta. Poi sposta.</p>
-      <ul class="nv-card-list">
-        <li>Mai lo sguardo a terra: leggono insicurezza in due secondi</li>
-        <li>Mai sopra le teste: sembra che parliate al muro</li>
-        <li>Mai fisso su un solo commissario: gli altri due si sentono ignorati</li>
-        <li>Sì un mezzo sorriso quando arriva il vostro gancio</li>
-      </ul>
-      <div class="nv-card-eserc">
-        <strong>Esercizio in coppia · 3 minuti</strong>
-        Recito i primi venti secondi della tesina al compagno. Lui mi conta quante volte ho cambiato sguardo. Sotto cinque, ricomincio.
-      </div>
-    </div>
-
-    <!-- MANI -->
-    <div class="nv-card">
-      <span class="nv-card-num">ii</span>
-      <div class="nv-card-icon">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M10 22V12C10 11 11 10 12 10C13 10 14 11 14 12V8C14 7 15 6 16 6C17 6 18 7 18 8V12C18 11 19 10 20 10C21 10 22 11 22 12V18C22 22 18 22 14 22H10Z" stroke="#0F3460" stroke-width="1.3" stroke-linejoin="round" fill="#FAF8F2"/>
-          <circle cx="20" cy="20" r="2" fill="#B8924A"/>
-        </svg>
-      </div>
-      <h3>Le mani</h3>
-      <p class="nv-card-rule">Sempre <strong>sopra la cintura</strong>, sempre <strong>visibili</strong>. Palmi aperti durante una promessa, indice o pollice a contare quando enumerate, mai pugni chiusi né dita intrecciate.</p>
-      <ul class="nv-card-list">
-        <li>Mai in tasca, mai dietro la schiena</li>
-        <li>Niente penne, anelli, capelli, ciuffi: la commissione vede solo il tic</li>
-        <li>Se reggete un oggetto del gancio, tenetelo a due mani come un libro raro</li>
-        <li>Quando non dovete gestualizzare, mani aperte appoggiate al banco</li>
-      </ul>
-      <div class="nv-card-eserc">
-        <strong>Esercizio individuale · 2 minuti</strong>
-        Mi registro mentre dico il gancio. Riguardo il video senza audio. Conto i tic. Ne resta uno? Bene. Ne restano tre? Cambio postura.
-      </div>
-    </div>
-
-    <!-- SPAZIO -->
-    <div class="nv-card">
-      <span class="nv-card-num">iii</span>
-      <div class="nv-card-icon">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <rect x="4" y="4" width="20" height="20" stroke="#0F3460" stroke-width="1.3" fill="none"/>
-          <circle cx="14" cy="14" r="3" fill="#B8924A"/>
-          <line x1="14" y1="4" x2="14" y2="9" stroke="#0F3460" stroke-width="1"/>
-          <line x1="14" y1="19" x2="14" y2="24" stroke="#0F3460" stroke-width="1"/>
-          <line x1="4" y1="14" x2="9" y2="14" stroke="#0F3460" stroke-width="1"/>
-          <line x1="19" y1="14" x2="24" y2="14" stroke="#0F3460" stroke-width="1"/>
-        </svg>
-      </div>
-      <h3>Lo spazio</h3>
-      <p class="nv-card-rule">Piedi <strong>paralleli, larghezza spalle</strong>, peso distribuito. Se in piedi, ancorati. Niente passi nervosi, niente dondolio. Lo spazio fisico che occupate dice quanto siete sicuri di essere lì.</p>
-      <ul class="nv-card-list">
-        <li>Mai gambe accavallate da seduti — chiudono il busto</li>
-        <li>Mai braccia conserte — la commissione legge difesa</li>
-        <li>Un passo avanti deciso quando entra l'oggetto del gancio</li>
-        <li>Se serve, appoggia entrambe le mani al banco e parla da lì</li>
-      </ul>
-      <div class="nv-card-eserc">
-        <strong>Esercizio in coppia · 4 minuti</strong>
-        Recito la tesina con un libro in equilibrio sulla testa per i primi trenta secondi. Se cade, il mio corpo si stava muovendo troppo. Riprovo.
-      </div>
-    </div>
-
-    <!-- VOCE -->
-    <div class="nv-card">
-      <span class="nv-card-num">iv</span>
-      <div class="nv-card-icon">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <line x1="14" y1="4" x2="14" y2="24" stroke="#B8924A" stroke-width="1.5"/>
-          <line x1="9" y1="9" x2="9" y2="19" stroke="#0F3460" stroke-width="1.3"/>
-          <line x1="19" y1="9" x2="19" y2="19" stroke="#0F3460" stroke-width="1.3"/>
-          <line x1="5" y1="11" x2="5" y2="17" stroke="#0F3460" stroke-width="1.3"/>
-          <line x1="23" y1="11" x2="23" y2="17" stroke="#0F3460" stroke-width="1.3"/>
-        </svg>
-      </div>
-      <h3>La voce</h3>
-      <p class="nv-card-rule">Rallentate del <strong>venti percento</strong> rispetto al parlato normale. Una <strong>pausa di due secondi</strong> dopo il gancio — lasciate che atterri. Volume un livello sopra la conversazione, mai sotto.</p>
-      <ul class="nv-card-list">
-        <li>Niente «ehm», «cioè», «tipo»: meglio una pausa muta</li>
-        <li>Niente <em>uptalk</em> (frase affermativa con tono di domanda)</li>
-        <li>Le parole-chiave del gancio si scandiscono lentamente</li>
-        <li>Respiro profondo prima di iniziare: tre secondi di silenzio sono permessi e fanno classe</li>
-      </ul>
-      <div class="nv-card-eserc">
-        <strong>Esercizio individuale · 3 minuti</strong>
-        Mi registro mentre dico il gancio a velocità normale, poi a metà velocità. Riascolto: la versione lenta fa più impressione di quanto immagini.
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="footer-line">«Il contenuto da solo non arriva. Il gancio apre la porta, e poi dentro ci si entra a piedi, con il proprio passo.»</div>
@@ -953,7 +987,7 @@ const ESEMPI = [
     argomento:'L\'importanza dell\'apparire nella società dei filtri social',
     pdv:'Progetto di vita: ancora in cerca di sé. Scuola: liceo scientifico.',
     tecnica:'Oggetto-simbolo',
-    banale:'Buongiorno, la mia tesina parla dell\'importanza dell\'apparire. Ho scelto questo argomento perché mi interessa molto il mondo dei social e fin da piccola sono affascinata da come ci mostriamo agli altri. Ho fatto collegamenti con italiano, arte, inglese ed educazione civica. Voglio iniziare con Pirandello, che parla di maschera sociale.',
+    banale:'Buongiorno, allora io ho scelto come argomento per la mia tesina l\'importanza dell\'apparire perché mi interessa molto e fin da piccola sono sempre stata affascinata dai social, specialmente Instagram. Penso sia un argomento attuale, oggi più che mai, perché tutti i ragazzi della mia età usano i filtri. Ho fatto i collegamenti con tutte le materie: in italiano Pirandello, perché parla di maschere; in arte un quadro di Lippi che si chiama "donna con la maschera"; in inglese un cortometraggio della Pixar, "Self"; in educazione civica l\'impatto dei modelli estetici. È un tema importante che riguarda tutti, soprattutto noi giovani. Inizio dalla letteratura con Pirandello.',
     gancio:'<em>(posa una maschera di legno sul banco)</em>Questa l\'ho intagliata io. Per due settimane l\'ho portata con me. Mi ha guardata dallo specchio ogni volta che ho aperto Instagram. Pirandello la chiamava maschera sociale. Lippi l\'ha dipinta. Pixar ne ha fatto un cortometraggio. Io vorrei dimostrarvi che le maschere non sono mai sparite — hanno solo cambiato materiale. Cominciamo dal teatro di Pirandello, dove tutto questo aveva già un nome.',
     elementi:{
       gancio:'Una maschera di legno intagliata, posata in silenzio sul banco',
@@ -968,7 +1002,7 @@ const ESEMPI = [
     argomento:'Le discriminazioni razziali nei secoli e oggi',
     pdv:'Progetto di vita: aiutare chi è in difficoltà. Scuola: liceo scienze umane.',
     tecnica:'Domanda-tesi',
-    banale:'La mia tesina parla delle discriminazioni razziali. È un argomento attuale e che mi sta a cuore, soprattutto oggi. Ho fatto una linea del tempo, parlo di Frida Kahlo, di Rosa Parks, di un\'associazione del territorio. Voglio iniziare dalla storia delle discriminazioni nei secoli.',
+    banale:'Buongiorno, allora la mia tesina parla delle discriminazioni razziali. Ho scelto questo argomento perché è un tema attuale e che mi sta molto a cuore, oggi più che mai. Penso sia importante parlarne perché riguarda tutti. Ho fatto collegamenti con tante materie: in storia ho fatto una linea del tempo con tutte le discriminazioni più importanti, in scienze parlo del fatto che le razze non esistono e ho fatto un questionario in classe, in arte Frida Kahlo perché è stata discriminata, in inglese Rosa Parks, in spagnolo la situazione attuale dell\'America Latina. Poi in educazione civica c\'è il progetto Famiglia Ginepro che sostiene le persone emarginate. È un tema importante. Inizio dalla storia.',
     gancio:'L\'articolo 3 della nostra Costituzione dice che siamo tutti uguali "senza distinzione di razza". Ma la genetica, dopo il Progetto Genoma Umano, ci dice che le razze umane non esistono. Allora perché continuiamo a usare quella parola in un testo del 1948 e nelle pagine dei giornali del 2026? La mia tesina parte da questa domanda — e la porta dentro una linea del tempo che attraversa Frida Kahlo, Rosa Parks e un questionario che ho fatto ai miei compagni qui in classe.',
     elementi:{
       gancio:'Una contraddizione tra Costituzione e scienza, posta come domanda diretta',
@@ -983,7 +1017,7 @@ const ESEMPI = [
     argomento:'La convivenza con la malattia in letteratura, arte, vita',
     pdv:'Progetto di vita: medicina. Scuola: liceo scientifico.',
     tecnica:'Aneddoto specifico',
-    banale:'Voglio fare il medico fin da piccolo, e ho scelto la convivenza con la malattia perché mi sembrava un argomento interessante. Ho fatto collegamenti con Leopardi, Virginia Woolf, García Márquez e Modigliani. Iniziamo dalla letteratura italiana con Leopardi.',
+    banale:'Buongiorno, allora io vorrei fare il medico fin da piccolo, mi è sempre piaciuto, e quindi ho scelto come argomento la convivenza con la malattia. Mi sembrava un tema interessante che riguarda molte persone. Ho fatto collegamenti con varie materie: in italiano Leopardi perché era malato, in arte Modigliani che è morto giovane, in inglese Virginia Woolf, in spagnolo García Márquez. In educazione civica ho fatto un\'intervista a mio papà. È un argomento attuale e importante. Inizio dalla letteratura italiana.',
     gancio:'Avevo nove anni la prima volta che ho visto mio padre prendere una pillola e dire: "questa la prenderò ogni giorno per il resto della vita". Da quel momento ho cominciato a cercare, in letteratura e in arte, persone che con la malattia avevano fatto pace. Ne ho trovate quattro: un poeta italiano, una scrittrice inglese, uno scrittore spagnolo, un pittore. Ve le presento una alla volta. Finiamo con un\'intervista a mio padre.',
     elementi:{
       gancio:'Un episodio databile, di nove anni fa, raccontato in dieci secondi',
@@ -998,7 +1032,7 @@ const ESEMPI = [
     argomento:'Un\'azienda zootecnica di famiglia tra tradizione e innovazione',
     pdv:'Progetto di vita: continuare l\'azienda di famiglia. Scuola: tecnico agrario.',
     tecnica:'Paradosso',
-    banale:'Vorrei lavorare nella mia azienda di famiglia, che si occupa di allevamento. Ho scelto questo argomento perché è il mio futuro. Ho fatto collegamenti con storia, tecnologia, arte (Segantini), inglese e civica. Inizio dalla storia dell\'azienda.',
+    banale:'Buongiorno, allora io vorrei lavorare nell\'azienda di famiglia perché mi piace molto e fin da piccolo aiuto i miei genitori. Quindi ho scelto come argomento la nostra azienda. È un\'azienda di allevamento. Ho fatto i collegamenti con tutte le materie: in storia parlo dell\'evoluzione dell\'allevamento, in tecnologia della sala mungitura automatizzata, in arte Segantini che ha dipinto un quadro che si chiama "Le due madri", in inglese parlo degli allevamenti intensivi e dell\'effetto della musica sulle mucche, in spagnolo la stessa cosa. In educazione civica parlo dell\'arpa e dell\'impatto ambientale. È un tema importante per il mio futuro. Inizio dalla storia.',
     gancio:'Vorrei iniziare con un esperimento di tre anni fa. L\'Università di Leicester ha dimostrato che le mucche, se ascoltano musica classica lenta, producono più latte. La fisica delle onde sonore entra dentro un\'azienda agricola. Allo stesso tempo, Segantini, un pittore, ha intitolato un suo quadro "Le due madri" — una mucca e una donna, sullo stesso piano. Per parlarvi della mia azienda non vi porto un trattore: vi porto un dipinto e uno studio scientifico. Il resto — la sala mungitura automatizzata, la legge ambientale, il mercato del latte — viene dietro.',
     elementi:{
       gancio:'Due fatti che non dovrebbero stare insieme: musica classica e produzione di latte',
@@ -1013,7 +1047,7 @@ const ESEMPI = [
     argomento:'Il limite di età per l\'imputabilità penale dei minori',
     pdv:'Progetto di vita: avvocatura. Scuola: liceo scientifico.',
     tecnica:'Numero che spiazza',
-    banale:'Vorrei diventare avvocato e ho scelto un argomento giuridico, l\'imputabilità dei minori. Ho fatto collegamenti con un romanzo di William March, le neuroscienze, Banksy e il diritto inglese. Inizio dal romanzo.',
+    banale:'Buongiorno, allora io vorrei fare l\'avvocato fin da piccolo, mi è sempre piaciuto questo lavoro, e quindi ho scelto un argomento giuridico, l\'imputabilità dei minori. È un argomento attuale e importante. Ho fatto i collegamenti con varie materie: in italiano un romanzo di William March, "Il seme cattivo", in scienze parlo dello sviluppo del cervello dei bambini e delle statistiche dei reati commessi dai minori di 14 anni, in arte Banksy perché denuncia le ingiustizie sociali contro i bambini, in inglese il diritto inglese che è diverso dal nostro. In educazione civica la sensibilizzazione nelle scuole. Inoltre porto un\'intervista a un\'esperta. Inizio dal romanzo.',
     gancio:'Tredici. Dieci. Sedici. In Italia un ragazzino di tredici anni che commette un reato non viene processato. In Inghilterra il limite scende a dieci. In Argentina sale a sedici. Ma il cervello, secondo le neuroscienze, matura allo stesso modo in tutti e tre i paesi — fino ai venticinque anni. Allora dove sta la verità? La mia tesina non vi dà la risposta. Vi spiega perché la domanda è più difficile di quanto sembri. Iniziamo da un romanzo che si chiama "Il seme cattivo".',
     elementi:{
       gancio:'Tre numeri pronunciati lentamente, senza spiegarli: forzano la commissione a chiedersi cosa siano',
@@ -1028,7 +1062,7 @@ const ESEMPI = [
     argomento:'I menhir del Salento e l\'archeoastronomia',
     pdv:'Progetto di vita: tecnico industriale. Scuola: ITIS.',
     tecnica:'Oggetto-simbolo',
-    banale:'Ho scelto i menhir del Salento perché mio nonno ha lavorato a quel progetto e la cosa mi ha sempre affascinato. Ho fatto collegamenti con storia, scienze, arte preistorica. Inizio dalla storia del megalitismo nel Salento.',
+    banale:'Buongiorno, allora io ho scelto come argomento i menhir del Salento perché mio nonno ha lavorato a quel progetto e quindi mi ha sempre affascinato fin da piccolo. Sono delle pietre antiche molto importanti. Ho fatto i collegamenti con varie materie: in storia parlo del megalitismo nel Salento e della penisola salentina, in scienze parlo dell\'archeoastronomia, in arte parlo dell\'arte preistorica del Salento, in inglese ho fatto una brochure turistica. In educazione civica parlo della vita sociale nella preistoria. Inoltre porto la brochure come artefatto. Inizio dalla storia del megalitismo.',
     gancio:'<em>(posa una piccola pietra grezza sul banco)</em>Questa pietra è un frammento di calcare salentino. Mio nonno l\'ha raccolta vicino a un menhir vero. Quel menhir è stato piantato nel terreno cinquemila anni fa — prima della scrittura, prima delle ruote — ed è orientato sul tramonto del solstizio d\'estate con un errore di meno di un grado. Senza orologi, senza bussole. Come hanno fatto? La mia tesina parte da qui, dall\'archeoastronomia, e finisce con una brochure turistica che ho scritto in tre lingue per chi quei menhir non li ha mai visti.',
     elementi:{
       gancio:'Una pietra che non sembra niente, ma è il frammento di un calcolo astronomico di cinquemila anni fa',
@@ -1043,7 +1077,7 @@ const ESEMPI = [
     argomento:'Il rame, dal materiale tecnico all\'arte',
     pdv:'Progetto di vita: lavoro tecnico-manuale. Scuola: professionale (RVM).',
     tecnica:'Numero che spiazza',
-    banale:'Mi piace il mio futuro lavoro e ho scelto il rame perché lo uso ogni giorno. Ho fatto collegamenti con geografia (Cile), matematica (mercato), arte e civica. Inizio dalla geografia.',
+    banale:'Buongiorno, allora a me piace molto il mio futuro lavoro, fin da piccolo aiuto mio papà nel laboratorio, e quindi ho scelto come argomento il rame perché è un materiale che uso ogni giorno. È un materiale molto importante. Ho fatto i collegamenti con varie materie: in geografia parlo del Cile dove c\'è il maggiore esponente del rame al mondo, la Codelco, in matematica parlo del mercato del rame e della sua quotazione, in tecnologia parlo della struttura della gronda con tutte le parti, pluviale, collarino, gomito, in arte parlo delle sculture in rame. In educazione civica parlo della sostenibilità del rame perché si ricicla bene. Porto anche un angolo di gronda come artefatto. Inizio dalla geografia.',
     gancio:'Diecimila anni. Tanto è il tempo da cui l\'umanità lavora il rame. Cento per cento. Tanto si recupera, senza perdere proprietà, anche dopo dieci riusi. Undici dollari e cinquanta. Tanto pesa, oggi, una libbra del materiale che ho scelto per la mia tesina. Tre numeri per dirvi che il rame è il primo metallo dell\'economia circolare, secoli prima che qualcuno inventasse questo termine. Vi porterò dal Cile, dove esce dalla terra, fino a un angolo formato che ho costruito nel mio laboratorio. È sul banco — lo guardiamo dopo.',
     elementi:{
       gancio:'Tre numeri (storia, riciclo, mercato) che ribaltano l\'idea che il rame sia "solo un materiale per lattonieri"',
@@ -1060,7 +1094,7 @@ const ESEMPI = [
     argomento:'Le fobie, dalla biologia ai social',
     pdv:'Progetto di vita: psicologia. Scuola: liceo scientifico.',
     tecnica:'Domanda-tesi',
-    banale:'Ho sempre voluto fare la psicologa e ho scelto le fobie. Ho fatto collegamenti con Pirandello, l\'amigdala, Munch e la FOMO. Inizio dal romanzo di Pirandello.',
+    banale:'Buongiorno, allora io ho sempre voluto fare la psicologa fin da piccola, mi è sempre piaciuta la mente umana, e quindi ho scelto come argomento le fobie. È un tema attuale che riguarda molti giovani, oggi più che mai. Ho fatto i collegamenti con varie materie: in italiano Pirandello con "Il fu Mattia Pascal", in storia le paure nel fascismo, in scienze l\'amigdala e come il corpo si trasforma quando ha paura, in arte "L\'urlo" di Munch, in inglese la FOMO che è la paura di restare fuori. In educazione civica la gestione delle emozioni. Inizio dal romanzo di Pirandello.',
     gancio:'FOMO. Fear Of Missing Out. La paura di restare fuori da quello che fanno gli altri. Esiste come parola dal 2004 e oggi compare nel manuale di psichiatria americano. La mia domanda è semplice: i social hanno *creato* una nuova fobia, o ne hanno solo reso visibile una che esisteva già da prima? Per rispondere devo passare dall\'amigdala — che è un piccolo grumo di neuroni nel cervello — fino a un quadro di Munch del 1893. La risposta è alla fine della tesina, non all\'inizio.',
     elementi:{
       gancio:'Una sigla anglosassone aperta in italiano + una domanda secca che la commissione non saprà risolvere subito',
@@ -1075,7 +1109,7 @@ const ESEMPI = [
     argomento:'La mafia in Sicilia, da Sciascia ai murales',
     pdv:'Progetto di vita: avvocatura penale. Scuola: liceo scienze umane economico-sociale.',
     tecnica:'Citazione-trampolino',
-    banale:'Vorrei fare l\'avvocato penalista e ho scelto la mafia perché è un tema importante per la nostra società. Ho fatto collegamenti con Sciascia, la storia, l\'arte di strada, l\'inglese. Inizio dalla letteratura con Sciascia.',
+    banale:'Buongiorno, allora io vorrei fare l\'avvocato penalista fin da piccola e quindi ho scelto come argomento la mafia in Sicilia. È un tema importante per la nostra società, oggi più che mai. Ho fatto i collegamenti con varie materie: in italiano Sciascia con "Il giorno della civetta", in storia Falcone, Borsellino, Dalla Chiesa e le stragi di mafia, in tecnologia l\'aula bunker, in arte due street artist che si chiamano Rosk and Loste, in inglese Cosa Nostra USA. In educazione civica la lotta alla mafia. Porto anche un artefatto sui murales di Falcone e Borsellino. Inizio dalla letteratura con Sciascia.',
     gancio:'"La mafia non è invincibile. È un fatto umano e come tutti i fatti umani avrà una fine." Lo ha detto Giovanni Falcone qualche mese prima di essere ucciso, nel 1992. Trentaquattro anni dopo, sui muri di Palermo due artisti dipingono il suo volto. Tra quella frase e quei murales c\'è un libro di Sciascia, un\'aula con le pareti d\'acciaio e una rete di giornalisti, magistrati e cittadini. Io vorrei mostrarvi che la lotta alla mafia, oggi, ha cambiato strumento ma non si è fermata.',
     elementi:{
       gancio:'Una citazione di Falcone usata come tesi della tesina, datata e contestualizzata',
@@ -1090,7 +1124,7 @@ const ESEMPI = [
     argomento:'Il basket di strada come rigenerazione urbana',
     pdv:'Progetto di vita: lavorare nel mondo della pallacanestro. Scuola: AFM.',
     tecnica:'Paradosso',
-    banale:'Voglio lavorare nel basket e ho scelto lo street basket. Ho fatto collegamenti con la geografia urbana, la fisiologia, la street art e l\'inglese. Inizio dalla geografia urbana.',
+    banale:'Buongiorno, allora io fin da piccolo voglio lavorare nel basket perché mi piace molto, e quindi ho scelto come argomento lo street basket. È un argomento che mi sta a cuore. Ho fatto i collegamenti con varie materie: in geografia urbana parlo degli spazi pubblici e delle disuguaglianze territoriali, in scienze i benefici fisiologici e mentali, in tecnologia un campo sicuro con la pavimentazione, il grip e l\'illuminazione, in arte la street art e i murales contro il vandalismo, in inglese le biografie dei giocatori. In educazione civica lo sport come bene comune. Porto un murales come artefatto. Inizio dalla geografia urbana.',
     gancio:'Un campetto di basket non costa più di trentamila euro e occupa quattrocento metri quadrati. Eppure, se lo metti in un quartiere giusto, riduce il vandalismo, abbassa la microcriminalità e tiene lontano i ragazzini dagli schermi per due ore al giorno. Più di una telecamera. Più di un vigile. La mia tesina vuole convincervi che un campetto è un presidio urbano travestito da svago. Iniziamo da com\'è fatto: pavimentazione, illuminazione, perché non è uguale a un campo da torneo.',
     elementi:{
       gancio:'Un\'inversione di prospettiva: il campetto non è svago, è infrastruttura sociale',
@@ -1105,7 +1139,7 @@ const ESEMPI = [
     argomento:'L\'amore tra sentimento e neurochimica',
     pdv:'Progetto di vita: indeciso. Scuola: liceo scientifico sportivo.',
     tecnica:'Citazione-trampolino',
-    banale:'Ho scelto l\'amore come argomento perché è un tema universale che riguarda tutti. Ho fatto collegamenti con Dante, la dopamina, Canova e una canzone in inglese. Inizio da Dante e dalla donna angelo.',
+    banale:'Buongiorno, allora ho scelto come argomento l\'amore perché è un tema universale che riguarda tutti, oggi più che mai, soprattutto noi giovani. Mi è sempre interessato. Ho fatto i collegamenti con varie materie: in italiano Dante con la donna angelo che è un amore puro e spirituale, in scienze la dopamina e la serotonina che sono le sostanze del cervello che si attivano quando uno si innamora, in arte Canova, in inglese o spagnolo una canzone d\'amore. In educazione civica l\'amore come valore universale. Inizio da Dante e dalla donna angelo.',
     gancio:'"Amor, ch\'a nullo amato amar perdona." Lo scrive Dante nell\'Inferno parlando di Paolo e Francesca. Settecento anni dopo, le risonanze magnetiche di un\'università americana fotografano il cervello di una persona innamorata e scoprono che certe aree si attivano *anche contro la nostra volontà*. Dante, senza saperlo, aveva descritto in un endecasillabo quello che la neuroscienza ha confermato con uno scanner. La mia tesina mette le due cose una di fronte all\'altra: un poeta del Trecento e una macchina del 2002. Vi accorgerete che si parlano.',
     elementi:{
       gancio:'Un endecasillabo dantesco letto come ipotesi neuroscientifica ante litteram',
@@ -1120,7 +1154,7 @@ const ESEMPI = [
     argomento:'Stalin, i Gulag e la manipolazione delle immagini',
     pdv:'Progetto di vita: studi storici. Scuola: liceo scientifico.',
     tecnica:'Paradosso',
-    banale:'Mi appassiona la storia e ho scelto Stalin e i Gulag. Ho fatto collegamenti con la storia, la fisiologia del freddo, Šostakovič, Orwell e l\'IA. Inizio dalla storia di Stalin.',
+    banale:'Buongiorno, allora a me appassiona molto la storia fin da piccola e quindi ho scelto come argomento Stalin e l\'incubo dei Gulag. È un argomento importante della storia del Novecento. Ho fatto i collegamenti con varie materie: in storia la figura di Stalin e i Gulag, in scienze la fisiologia del gelo perché i campi erano in Siberia, in arte la fotografia ai giorni nostri, in musica Šostakovič che era un compositore russo, in inglese "La fattoria degli animali" di George Orwell. In educazione civica l\'IA e la manipolazione delle foto. Porto una scatola sul culto della personalità come artefatto. Inizio dalla storia di Stalin.',
     gancio:'Stalin uccise milioni di persone, ma forse non è la cosa più inquietante che fece. Ogni volta che eliminava un oppositore, ne cancellava anche la fotografia: ridipingeva i ritratti di gruppo, riscriveva le didascalie. Lo chiamavano *damnatio memoriae*. Voi state guardando una foto del 1925 — se Stalin fosse vivo oggi, con cinque secondi di intelligenza artificiale otterrebbe lo stesso risultato. La mia tesina parte da qui: dal totalitarismo che usava il ritocco fotografico al nostro presente in cui un deepfake si crea con un\'app gratuita.',
     elementi:{
       gancio:'Un paragone shock tra ritocco fotografico staliniano e deepfake contemporanei',
@@ -1135,7 +1169,7 @@ const ESEMPI = [
     argomento:'Il veleno tra scienza e simbolo',
     pdv:'Progetto di vita: insegnamento. Scuola: liceo scienze umane.',
     tecnica:'Citazione-trampolino',
-    banale:'Vorrei diventare professore e ho scelto il veleno come tema. Ho fatto collegamenti con D\'Annunzio, le tossine vegetali, il doping e l\'inquinamento. Inizio da D\'Annunzio.',
+    banale:'Buongiorno, allora io vorrei diventare professore in futuro e ho scelto come argomento il veleno tra scienza e simbolo perché mi sembrava un\'idea originale. Volevo collegare scienze e simboli. Ho fatto i collegamenti con varie materie: in italiano D\'Annunzio perché il veleno è simbolo del male, della passione e della corruzione, in scienze parlo delle tossine vegetali e dell\'auto-difesa delle piante, in motoria il doping che è un veleno per il corpo e l\'etica sportiva, in inglese "Romeo e Giulietta" di Shakespeare. In educazione civica l\'inquinamento ambientale. Inizio da D\'Annunzio.',
     gancio:'"Tutto è veleno, niente è veleno: è la dose che fa il veleno." Lo dice Paracelso, un medico svizzero, nel Cinquecento. È una frase che fa saltare in aria un\'idea che abbiamo da bambini, e cioè che esistano sostanze "cattive" e sostanze "buone". Non è così. Una pianta che ti cura in un grammo ti uccide in dieci. La mia tesina prende questa frase e la fa attraversare cinque secoli: dalle tossine vegetali al doping di un campione di ciclismo, da una scena di Shakespeare all\'inquinamento del fiume vicino a casa nostra. Cambia il veleno, non cambia la regola di Paracelso.',
     elementi:{
       gancio:'La frase di Paracelso usata come "regola unica" che attraversa cinque secoli e cinque discipline',
@@ -1150,7 +1184,7 @@ const ESEMPI = [
     argomento:'I Beatles e la rivoluzione musicale degli anni Sessanta',
     pdv:'Progetto di vita: musica e produzione. Scuola: ITIS informatica.',
     tecnica:'Oggetto-simbolo',
-    banale:'Voglio lavorare nella musica e ho scelto i Beatles perché mi piacciono molto. Ho fatto collegamenti con Pirandello, una canzone, l\'arte espressiva, l\'inglese e i diritti civili. Inizio dalla biografia.',
+    banale:'Buongiorno, allora io fin da piccolo voglio lavorare nella musica e ascolto i Beatles, mi piacciono molto, e quindi ho scelto come argomento i Beatles, la boyband rivoluzionaria. Ho fatto i collegamenti con varie materie: in italiano Pirandello e la crisi d\'identità con la canzone "While My Guitar Gently Weeps", in scienze la canzone "Across the Universe" che parla dell\'universo, in arte la canzone "Something" e l\'evoluzione musicale dei Beatles, in inglese parlo di chi sono i Beatles e perché ho scelto questo argomento. In educazione civica "Blackbird" che lotta per i diritti civili degli uomini di colore. Porto anche una canzone suonata come artefatto. Inizio dall\'introduzione.',
     gancio:'<em>(posa un disco in vinile sul banco)</em>Questo è un quarantacinque giri originale del 1967. Lato A: "A Day in the Life". Vorrei che lo guardaste per quindici secondi. Quattro ragazzi inglesi, in cinque anni di lavoro, hanno fatto cambiare passo all\'industria musicale, alla cultura giovanile e perfino al modo in cui si registra un disco. Ho scelto cinque loro canzoni — non il loro intero catalogo, cinque canzoni — e a ognuna di esse ho legato una materia. "Blackbird" alla civica. "While My Guitar Gently Weeps" a Pirandello. "Across the Universe" alla scienza. Andiamo in ordine.',
     elementi:{
       gancio:'Un disco in vinile come oggetto-totem + un metodo dichiarato (una canzone per ogni materia)',
@@ -1167,7 +1201,7 @@ const ESEMPI = [
     argomento:'La pet therapy attraverso il cavallo',
     pdv:'Progetto di vita: istruttrice di equitazione. Scuola: tecnico agrario.',
     tecnica:'Aneddoto specifico',
-    banale:'Mi piacciono i cavalli e vorrei diventare istruttrice. Ho scelto la pet therapy con il cavallo. Ho fatto collegamenti con la storia, le emozioni, la motoria e l\'inglese. Inizio dalla storia della pet therapy.',
+    banale:'Buongiorno, allora io fin da piccola amo i cavalli e vorrei diventare istruttrice di equitazione, mi piace molto, e quindi ho scelto come argomento la pet therapy con il cavallo. Ho fatto i collegamenti con varie materie: in storia come, quando e dove è nata la pet therapy, in scienze il corpo umano, il cervello e le emozioni, in motoria il movimento del cavallo e gli esercizi per il recupero parziale delle funzioni articolari, in inglese e spagnolo le emozioni di una bambina che fa pet therapy. In educazione civica il rispetto verso l\'animale come forma di insegnamento. Inoltre porto un artefatto. Inizio dalla storia.',
     gancio:'Tre anni fa, in un maneggio dove faccio volontariato, ho visto una bambina di sei anni che non parlava da quattro mesi. Quando le hanno fatto toccare il muso del cavallo, gli ha detto "ciao". Una sola parola. Senza nessun motivo apparente. Da quel giorno ho cominciato a leggere studi sull\'ippoterapia. Ho scoperto che il cavallo ha un campo magnetico cardiaco cinque volte più ampio di quello umano. Sente i nostri battiti prima che noi ce ne accorgiamo. La mia tesina parte da quella bambina e finisce con un disegno: una sella adattata per un bambino disabile.',
     elementi:{
       gancio:'Un episodio databile + un dato scientifico inaspettato (il campo magnetico cardiaco del cavallo)',
@@ -1182,7 +1216,7 @@ const ESEMPI = [
     argomento:'Il PTFE e i materiali "eterni"',
     pdv:'Progetto di vita: chimica industriale. Scuola: ITI chimica.',
     tecnica:'Paradosso',
-    banale:'Mi interessa la chimica e ho scelto il PTFE. È un materiale industriale poco conosciuto. Ho fatto collegamenti con la storia, la chimica, le protesi e l\'inglese. Inizio dalla scoperta del materiale.',
+    banale:'Buongiorno, allora a me interessa molto la chimica e quindi ho scelto come argomento il PTFE, che è il politetrafluoroetilene. È un materiale industriale poco conosciuto. Ho fatto i collegamenti con varie materie: in storia la scoperta del PTFE e gli sviluppi industriali, in scienze la composizione chimica e gli ambiti di applicazione, in motoria l\'utilizzo nelle protesi articolari, in inglese parlo della scoperta del materiale. In educazione civica l\'impatto ambientale. Porto un campione del materiale come artefatto. È un argomento attuale. Inizio dalla scoperta del PTFE.',
     gancio:'Nel 1938 un giovane chimico americano, Roy Plunkett, lascia per sbaglio una bombola di gas in un laboratorio. Quando torna, dentro trova una polvere bianca. Quella polvere è il PTFE: il materiale del Teflon delle padelle, delle protesi articolari, delle giacche da pioggia. Salva vite. Ma nessuno è mai riuscito a farlo decomporre — neanche dopo cinquemila anni. Lo chiamano *forever chemical*. La mia tesina prende un materiale nato per caso, lo segue dentro un\'articolazione del ginocchio e dentro una falda acquifera del Veneto, e finisce con una domanda: di chi è la responsabilità di un\'invenzione che resta più a lungo di chi l\'ha inventata?',
     elementi:{
       gancio:'Una scoperta per errore + un paradosso etico (salva vite e contamina falde)',
@@ -1197,7 +1231,7 @@ const ESEMPI = [
     argomento:'Il bullismo dal punto di vista del cervello del bullo',
     pdv:'Progetto di vita: ingegneria. Scuola: liceo scientifico.',
     tecnica:'Domanda-tesi',
-    banale:'Ho scelto il bullismo perché è un tema importante e attuale. Ho fatto collegamenti con un libro, l\'encefalo, la musica, il kung fu e l\'inglese. Inizio dal libro "Wonder".',
+    banale:'Buongiorno, allora io ho scelto come argomento il bullismo perché è un tema importante e attuale, oggi più che mai, e riguarda tutti i giovani della mia età. Ho fatto i collegamenti con varie materie: in italiano "Wonder" di R.J. Palacio, in scienze l\'encefalo del bullo e come funziona, in tecnologia il cyberbullismo, in musica il passato di Eminem, in motoria il kung fu che insegna a rispettare e a essere rispettati, in inglese parlo della mia esperienza personale. In educazione civica la campagna "Smonta il bullo" che difende i diritti. È un argomento che mi sta a cuore. Inizio da "Wonder".',
     gancio:'Quando parliamo di bullismo, parliamo sempre della vittima. Di chi subisce. Del dolore di chi viene escluso. Io vorrei provare a fare la cosa opposta — anche se è scomoda. Voglio chiedervi: cosa succede dentro il cervello di un bullo? Le aree dell\'aggressività si attivano per natura o per esperienza? Le neuroscienze hanno una risposta che non è quella che ci aspettiamo. Per arrivarci passo da un romanzo americano, da un rapper di Detroit e da una palestra di kung fu in Cina.',
     elementi:{
       gancio:'Una domanda controintuitiva sul bullo (non sulla vittima) + una promessa di risposta scomoda',
@@ -1212,7 +1246,7 @@ const ESEMPI = [
     argomento:'The Line, la città lineare di centosettanta chilometri',
     pdv:'Progetto di vita: chimica e analisi. Scuola: ITI chimica.',
     tecnica:'Citazione-trampolino',
-    banale:'Ho scelto The Line, una città del futuro in costruzione in Arabia Saudita. Ho fatto collegamenti con Calvino, la tecnologia, il futurismo, l\'inglese e i pro/contro. Inizio dalla geografia.',
+    banale:'Buongiorno, allora ho scelto come argomento "The Line" perché è una città del futuro che mi affascina molto. È in costruzione in Arabia Saudita. È un argomento attuale e originale. Ho fatto i collegamenti con varie materie: in italiano Italo Calvino con "Le città invisibili", in geografia la collocazione geografica e l\'impatto, in tecnologia lo zero gravity urbanism e il design esterno, in arte il futurismo come movimento artistico, in inglese una lingua del futuro. In educazione civica i pro e i contro della realizzazione di questo progetto ambizioso. Inizio dalla geografia.',
     gancio:'"Le città, come i sogni, sono costruite di desideri e di paure." Lo scrive Italo Calvino in un libro che si chiama "Le città invisibili", nel 1972. Cinquant\'anni dopo, in mezzo al deserto dell\'Arabia Saudita, qualcuno sta provando a costruire una città di centosettanta chilometri, alta cinquecento metri e larga duecento — una sola linea. Si chiama The Line. È il sogno di un re. È fatta di promesse di sostenibilità, ma anche di lavoratori migranti senza diritti. La mia tesina prende quel sogno e lo confronta con le città *immaginate* da Calvino. Non è uguale. È più stretta.',
     elementi:{
       gancio:'Una citazione letteraria + un confronto tra utopia immaginata e utopia in costruzione',
@@ -1227,7 +1261,7 @@ const ESEMPI = [
     argomento:'I diamanti tra geologia e diritti umani',
     pdv:'Progetto di vita: indeciso. Scuola: liceo linguistico.',
     tecnica:'Numero che spiazza',
-    banale:'I diamanti sono affascinanti e ho deciso di farne il tema della mia tesina. Ho fatto collegamenti con la storia, la geologia, l\'arte, la De Beers e i diritti umani. Inizio dalla geologia dei diamanti.',
+    banale:'Buongiorno, allora i diamanti mi affascinano molto e ho deciso di farne il tema della mia tesina. Sono pietre preziose molto importanti e di grande valore. Ho fatto i collegamenti con varie materie: in storia Cecil Rhodes e la De Beers, in geografia il Sudafrica che è il gigante minerario, in scienze la formazione geologica delle miniere, in arte la decorazione dei gioielli, in inglese "De Beers, the British Empire". In educazione civica i conflict diamonds e i diritti umani perché lo sfruttamento della manodopera è una cosa grave. È un argomento importante. Inizio dalla storia.',
     gancio:'Un diamante di un carato pesa zero virgola due grammi. La sua formazione richiede tra uno e tre miliardi di anni. Il prezzo medio sul mercato? Settemila euro. Ma il dato che vorrei raccontarvi è un altro: nel 1947 un\'agenzia pubblicitaria inventa lo slogan "A Diamond Is Forever" e in quindici anni il diamante diventa il simbolo dell\'amore eterno. Una tradizione antica, vero? No: ha settantanove anni, meno di un nonno. La mia tesina è un viaggio dentro questo paradosso: un cristallo che impiega un miliardo di anni a nascere, una tradizione che ne impiega quindici a essere venduta, e una guerra civile in Africa che ne impiega molto meno a uccidere.',
     elementi:{
       gancio:'Tre numeri (peso, età geologica, prezzo) + un dato pubblicitario che ribalta l\'idea di "tradizione"',
@@ -1242,7 +1276,7 @@ const ESEMPI = [
     argomento:'La biomimetica: la natura come modello tecnologico',
     pdv:'Progetto di vita: indeciso. Scuola: liceo scientifico con potenziamento biomedico.',
     tecnica:'Oggetto-simbolo',
-    banale:'Mi interessano le scienze e ho scelto la biomimetica. Ho fatto collegamenti con D\'Annunzio, la geometria, le architetture, i costumi da gara e l\'inglese. Inizio dalla letteratura con la pioggia nel pineto.',
+    banale:'Buongiorno, allora a me interessano molto le scienze fin da piccola e ho scelto come argomento la biomimetica perché mi sembrava originale. Ho fatto tantissimi collegamenti con varie materie: in italiano "La pioggia nel pineto" di D\'Annunzio, in geografia gli adattamenti biogeografici, in storia da Leonardo a Mestral a Benyus, in matematica la geometria dell\'esagono, in scienze l\'effetto loto e la termoregolazione nei termitai, in tecnologia le applicazioni ingegneristiche, in arte la Sagrada Familia di Gaudí e i disegni di Haeckel, in motoria la shark skin technology dei costumi da gara, in inglese e spagnolo ripeto la parte di arte e motoria. In educazione civica la biomimetica come modello di sviluppo sostenibile. Inizio dalla letteratura con D\'Annunzio.',
     gancio:'<em>(posa una foglia di loto sul banco)</em>Questa foglia, se la appoggiate su una pozza, viene a galla pulita. L\'acqua scivola via, lo sporco con essa. Si chiama "effetto loto" ed è una proprietà della microstruttura della foglia. Negli ultimi vent\'anni i nostri costumi da gara, le vernici degli edifici, perfino certi smartphone, copiano questa foglia. La mia tesina si chiama biomimetica, e parte da qui: una pianta che ha perfezionato un brevetto in milioni di anni — gratis — e che noi solo ora stiamo imparando a leggere. Vi porterò da una termiteria africana fino alla Sagrada Familia di Gaudí, passando per uno squalo.',
     elementi:{
       gancio:'Una foglia che è anche un brevetto: oggetto naturale che viene riconosciuto come tecnologia',
@@ -1257,7 +1291,7 @@ const ESEMPI = [
     argomento:'Il rapporto tra ragione ed emozioni',
     pdv:'Progetto di vita: psicologia. Scuola: liceo classico.',
     tecnica:'Citazione-trampolino',
-    banale:'Vorrei fare la psicologa e ho scelto le emozioni. Ho fatto collegamenti con Romanticismo e Illuminismo, il sistema limbico, due movimenti artistici, una canzone in inglese e l\'empatia. Inizio dal Romanticismo.',
+    banale:'Buongiorno, allora io vorrei fare la psicologa fin da piccola e quindi ho scelto come argomento il limite tra razionalità ed emozioni. È un tema universale che riguarda tutti. Ho fatto i collegamenti con varie materie: in italiano il Romanticismo e l\'Illuminismo a confronto, in scienze il sistema limbico e l\'fMRI, in arte i Fauves e l\'Espressionismo tedesco, in inglese le canzoni che cambiano l\'umore, in spagnolo la mia esperienza personale. In educazione civica l\'empatia tra studenti per prevenire il bullismo e i neuroni specchio. È un tema che mi sta a cuore. Inizio dal Romanticismo.',
     gancio:'"Senza emozioni, non si decide." Lo dice Antonio Damasio, neuroscienziato portoghese, dopo aver studiato pazienti con il sistema limbico danneggiato: razionalmente perfetti, capaci di risolvere equazioni, ma incapaci di scegliere cosa mangiare a pranzo. Quella frase rovescia tremila anni di filosofia, da Platone in giù: dire "segui la ragione, non il cuore" è impossibile. Senza il cuore, la ragione non sa cosa fare. La mia tesina parte da Damasio e va indietro nel tempo, fino al duello tra Illuminismo e Romanticismo, e poi torna a oggi, in classe, con un\'idea: l\'empatia si può insegnare. Ho preparato anche un esperimento.',
     elementi:{
       gancio:'Una citazione contemporanea che ribalta tremila anni di filosofia + un esperimento promesso',
@@ -1306,6 +1340,26 @@ const areaArtEspr = document.getElementById('area-art-espr');
 const areaLingue = document.getElementById('area-lingue');
 const areaCivica = document.getElementById('area-civica');
 
+let lastGancioVisible = false;
+
+function triggerWave(){
+  const wave = document.getElementById('gancio-wave');
+  if(!wave) return;
+  wave.setAttribute('r', '24');
+  wave.setAttribute('opacity', '0');
+  wave.getBoundingClientRect();
+  let start = null;
+  function frame(ts){
+    if(start === null) start = ts;
+    const t = Math.min((ts - start) / 1400, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    wave.setAttribute('r', 24 + (84 - 24) * eased);
+    wave.setAttribute('opacity', 0.7 * (1 - t));
+    if(t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 function showStep(n){
   stepBtns.forEach(b=>b.classList.toggle('active', parseInt(b.dataset.step)===n));
   const data = stepData[n-1];
@@ -1324,12 +1378,17 @@ function showStep(n){
   gancio.style.opacity='0';
   gancio.style.transition='opacity 0.6s ease';
 
-  if(n>=2){
+  const newGancioVisible = n >= 2;
+  if(newGancioVisible){
     setTimeout(()=>{
       gancio.style.opacity='1';
       argomento.classList.add('pulse-active');
+      // onda concentrica solo quando il gancio passa da nascosto a visibile
+      if(!lastGancioVisible) setTimeout(triggerWave, 250);
     }, 100);
   }
+  lastGancioVisible = newGancioVisible;
+
   if(n>=3){
     setTimeout(()=>{
       arc1.style.opacity='1';
@@ -1371,31 +1430,66 @@ const checklist = document.getElementById('checklist');
 const checklistItems = document.getElementById('checklist-items');
 
 function pesca(){
-  let idx;
-  do {
-    idx = Math.floor(Math.random()*ESEMPI.length);
-  } while(idx === lastEsempioIdx && ESEMPI.length > 1);
-  lastEsempioIdx = idx;
-  currentEsempio = ESEMPI[idx];
+  const isFirstPick = labEmpty.style.display !== 'none';
 
-  labEmpty.style.display='none';
-  essayCard.classList.add('show');
+  if(isFirstPick){
+    labEmpty.style.display='none';
+    essayCard.classList.add('show');
+  }
 
-  essaySezione.textContent = `Sezione ${currentEsempio.sezione}`;
-  essayTecnica.textContent = `Tecnica: ${currentEsempio.tecnica}`;
-  essayTecnica.classList.add('hidden');
-  essayArg.textContent = currentEsempio.argomento;
-  essayPdv.textContent = currentEsempio.pdv;
-  banaleText.innerHTML = currentEsempio.banale;
-  ganchoText.innerHTML = currentEsempio.gancio;
-
+  // reset stato visivo
   ganchoBox.classList.remove('show');
-  showGanchoBtn.style.display='inline-flex';
+  checklist.classList.remove('show');
+  showGanchoBtn.style.display='none';
   showChecklistBtn.style.display='none';
   nextBtn.style.display='none';
-  checklist.classList.remove('show');
+  essayTecnica.classList.add('hidden');
+  banaleText.innerHTML = '';
+  ganchoText.innerHTML = '';
+  essayArg.classList.add('spinning');
+  essayPdv.classList.add('spinning');
 
-  essayCard.scrollIntoView({behavior:'smooth', block:'start'});
+  // pre-determino la destinazione
+  let destIdx;
+  do {
+    destIdx = Math.floor(Math.random()*ESEMPI.length);
+  } while(destIdx === lastEsempioIdx && ESEMPI.length > 1);
+  lastEsempioIdx = destIdx;
+  currentEsempio = ESEMPI[destIdx];
+
+  // intervalli decrescenti: rolling veloce poi settle progressivo
+  const intervals = [80,80,80,80,80,80,80,80,80,80,80,80,80,80,80, 100,130,170,220,290];
+  let i = 0;
+
+  function spin(){
+    if(i < intervals.length){
+      const idx = Math.floor(Math.random()*ESEMPI.length);
+      const e = ESEMPI[idx];
+      essayArg.textContent = e.argomento;
+      essayPdv.textContent = e.pdv;
+      essaySezione.textContent = `Sezione ${e.sezione}`;
+      tick();
+      setTimeout(spin, intervals[i]);
+      i++;
+    } else {
+      // landing finale
+      essaySezione.textContent = `Sezione ${currentEsempio.sezione}`;
+      essayTecnica.textContent = `Tecnica: ${currentEsempio.tecnica}`;
+      essayArg.textContent = currentEsempio.argomento;
+      essayPdv.textContent = currentEsempio.pdv;
+      banaleText.innerHTML = currentEsempio.banale;
+      ganchoText.innerHTML = currentEsempio.gancio;
+      essayArg.classList.remove('spinning');
+      essayPdv.classList.remove('spinning');
+      showGanchoBtn.style.display='inline-flex';
+      tickFinal();
+    }
+  }
+
+  if(isFirstPick){
+    setTimeout(()=>essayCard.scrollIntoView({behavior:'smooth', block:'start'}), 50);
+  }
+  spin();
 }
 
 function mostraGancio(){
@@ -1433,6 +1527,130 @@ peschaBtn.addEventListener('click', pesca);
 showGanchoBtn.addEventListener('click', mostraGancio);
 showChecklistBtn.addEventListener('click', mostraChecklist);
 nextBtn.addEventListener('click', pesca);
+
+/* ============= AUDIO (default OFF) ============= */
+let soundOn = false;
+let audioCtx = null;
+
+function tick(){
+  if(!soundOn || !audioCtx) return;
+  const o = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  o.frequency.value = 1800;
+  o.type = 'square';
+  g.gain.setValueAtTime(0.04, audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start();
+  o.stop(audioCtx.currentTime + 0.04);
+}
+
+function tickFinal(){
+  if(!soundOn || !audioCtx) return;
+  const o = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  o.frequency.setValueAtTime(180, audioCtx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.18);
+  o.type = 'sine';
+  g.gain.setValueAtTime(0.18, audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.22);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start();
+  o.stop(audioCtx.currentTime + 0.23);
+}
+
+const soundBtn = document.createElement('button');
+soundBtn.className = 'sound-toggle';
+soundBtn.title = 'Suono di pesca (off)';
+soundBtn.setAttribute('aria-label','Attiva suono');
+soundBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 9v6h4l5 4V5l-5 4H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line id="sound-cross-1" x1="17" y1="9" x2="22" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line id="sound-cross-2" x1="22" y1="9" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+document.body.appendChild(soundBtn);
+
+soundBtn.addEventListener('click', ()=>{
+  soundOn = !soundOn;
+  if(soundOn && !audioCtx){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  soundBtn.classList.toggle('on', soundOn);
+  soundBtn.title = soundOn ? 'Suono di pesca (on)' : 'Suono di pesca (off)';
+  soundBtn.setAttribute('aria-label', soundOn ? 'Disattiva suono' : 'Attiva suono');
+  document.getElementById('sound-cross-1').style.display = soundOn ? 'none' : '';
+  document.getElementById('sound-cross-2').style.display = soundOn ? 'none' : '';
+  if(soundOn) tickFinal();
+});
+
+/* ============= ENTRATA SEZIONI (one-shot) ============= */
+document.documentElement.classList.add('js-ready');
+const sectionEls = document.querySelectorAll('section');
+const sectionObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+sectionEls.forEach(s=>sectionObserver.observe(s));
+
+/* ============= INDICATORE POSIZIONE + NAV TASTIERA ============= */
+const SECTION_IDS = ['intro','nonverbale','lab'];
+const SECTION_NUMERALS = ['I','II','III'];
+
+const navEl = document.createElement('div');
+navEl.className = 'nav-indicator';
+navEl.setAttribute('aria-label','Navigazione sezioni');
+navEl.innerHTML = SECTION_IDS.map((id, i)=>
+  `<div class="nav-indicator-item" data-target="${id}" role="button" tabindex="0">${SECTION_NUMERALS[i]}</div>`
+).join('');
+document.body.appendChild(navEl);
+
+navEl.addEventListener('click', e=>{
+  if(e.target.classList.contains('nav-indicator-item')){
+    const t = document.getElementById(e.target.dataset.target);
+    if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+});
+
+function getCurrentSection(){
+  let current = 0;
+  const trigger = window.innerHeight * 0.4;
+  SECTION_IDS.forEach((id, i)=>{
+    const el = document.getElementById(id);
+    if(el && el.getBoundingClientRect().top < trigger) current = i;
+  });
+  return current;
+}
+
+function updateNav(){
+  const current = getCurrentSection();
+  document.querySelectorAll('.nav-indicator-item').forEach((el, i)=>{
+    el.classList.toggle('active', i === current);
+  });
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+window.addEventListener('resize', updateNav);
+updateNav();
+
+document.addEventListener('keydown', e=>{
+  // ignora se l'utente sta digitando in input/textarea
+  if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+  if(['ArrowDown','PageDown',' '].includes(e.key)){
+    e.preventDefault();
+    const next = Math.min(getCurrentSection() + 1, SECTION_IDS.length - 1);
+    document.getElementById(SECTION_IDS[next]).scrollIntoView({behavior:'smooth', block:'start'});
+  } else if(['ArrowUp','PageUp'].includes(e.key)){
+    e.preventDefault();
+    const prev = Math.max(getCurrentSection() - 1, 0);
+    document.getElementById(SECTION_IDS[prev]).scrollIntoView({behavior:'smooth', block:'start'});
+  } else if(e.key === 'Home'){
+    e.preventDefault();
+    window.scrollTo({top:0, behavior:'smooth'});
+  } else if(e.key === 'End'){
+    e.preventDefault();
+    document.getElementById(SECTION_IDS[SECTION_IDS.length-1]).scrollIntoView({behavior:'smooth', block:'start'});
+  }
+});
 </script>
 </body>
 </html>
